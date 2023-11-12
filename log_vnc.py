@@ -10,7 +10,7 @@ def log_flow_fields(filename):
                 ip = dpkt.ip.IP(eth.data)
                 if ip.p == dpkt.ip.IP_PROTO_TCP:
                     tcp = dpkt.tcp.TCP(ip.data)
-                    with open('flow_log.csv', 'a', newline='') as csvfile:
+                    with open('flow_log.csv', 'a', newline='', encoding='utf-8') as csvfile:
                         flow_writer = csv.DictWriter(csvfile, fieldnames=['flow_duration', 'Header_Length', 'Protocol_Type', 'Duration', 'Rate', 'Srate', 'ack_flag_number', 'syn_count', 'urg_count', 'rst_count', 'UDP', 'ICMP', 'tot_sum', 'Min', 'Max', 'AVG', 'Std', 'Tot_size', 'IAT', 'Number', 'Magnitue', 'Radius', 'Covariance', 'Variance', 'Weight'])
                         flow_writer.writerow({
                             'flow_duration': ts,
